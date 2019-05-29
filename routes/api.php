@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 //     return $request->user();
 });
 
- Route::post('/user/store', 'UserController@store');
+ Route::post('/book/post', 'BookController@post');
 // Route::get('/user/getall', 'UserController@show');
 // Route::post('/user/login', 'UserController@login');
 

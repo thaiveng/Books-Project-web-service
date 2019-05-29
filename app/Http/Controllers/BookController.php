@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Books;
+
 
 class BookController extends Controller
 {
-    public function store(Request $request)
+    public function post(Request $request)
     {
     
-        $book = Book::create([
+        $book = Books::create([
             'book_title' => $request->book_title,
-            'book_imgage'=> $request->book_image,
+            'author'=> $request->author,
+            'description'=> $request->description,
           ]);
-          $result = array('status'=>'successful');
+          $result = array('book'=>'uploaded');
         return response()->json(($result));
     }
 }
