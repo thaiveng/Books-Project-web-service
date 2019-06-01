@@ -19,7 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('book_title');
             $table->string('author');
             $table->string('book_image');
-            $table->enum('availibility',[0,1]);
+            $table->enum('availibility',[0,1])->default(0);
             $table->string('description');
             $table->unsignedInteger('cat_id');
             $table->unsignedInteger('user_id');

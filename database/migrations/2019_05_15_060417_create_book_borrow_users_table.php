@@ -18,6 +18,8 @@ class CreateBookBorrowUsersTable extends Migration
             $table->increments('borrowing_id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('book_id');
+            $table->datetime("borrow_date");
+            $table->datatime("return_date");
             $table->timestamps();
         });
     }

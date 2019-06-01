@@ -21,9 +21,43 @@ class Book extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if($request->hasFile('imgs')){
+            $file = $request->file('imgs');
+            $fileNameWithExt = $file->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+                $path = $file->storeAs('public/images', $fileNameToStore);
+                $cat_id=($request->cat_id)*1;
+                $user_id=($request->user_id)*1;
+                $book_type_id=($request->book_type_id)*1;
+                $book = Books::create([
+                'book_title' => $request->book_title,
+                'author'=> $request->author,
+                'book_image'=> $fileNameToStore,
+                'description' => $request->description,
+                'cat_id' => $cat_id,
+                'user_id' => $user_id,
+                'book_type_id' => $book_type_id ]);
+        }
+         //  if($request->hasFile('imgs')){
+         //    $book_imageg = $request->file('imgs');
+         //    $filename = time() . '.' . $book_imageg->getClientOriginalExtension();
+         //    Image::make($book_imageg)->resize(300, 300)->save( public_path('public/images/' . $filename ) );
+
+         //    // $book = Books::create([
+         //    // 'book_title' => $request->book_title,
+         //    // 'author'=> $request->author,
+            // 'book_image'=> $filename,
+         //    // 'description' => $request->description,
+         //    // 'cat_id' => $request->cat_id,
+         //    // 'user_id' => $request->user_id,
+         //    // 'book_type_id' => $request->book_type_id,
+         //  // ]);
+         // }
+            
     }
 
     /**
